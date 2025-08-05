@@ -7,6 +7,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "Index",
         component: () => import("@/views/Index.vue"),
     },
+    {
+        path: "/quiz",
+        name: "quizHome",
+        component: () => import("@/views/QuizHome.vue"),
+    },
 ];
 
 const router = createRouter({

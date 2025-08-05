@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { QUIZ_MODE } from "@/const/common";
 import { useProfileStore } from "@/stores/profile";
+import { useRouter } from "vue-router";
 const profileStore = useProfileStore();
+const router = useRouter();
 
 const onSelectQuizMode = ({ mode }: { mode: number }) => {
     profileStore.updateState({
         currentMode: mode,
+    });
+    router.push({
+        name: "quizHome",
     });
 };
 </script>
