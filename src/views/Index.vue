@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { QUIZ_MODE } from "@/const/common";
 import { useProfileStore } from "@/stores/profile";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
 const profileStore = useProfileStore();
 const router = useRouter();
+
+const computedLanguageMapping = computed(() => {
+    return {
+        [QUIZ_MODE.ENGLISH]: "english",
+        [QUIZ_MODE.JAPANESE]: "japanese",
+    };
+});
 
 const onSelectQuizMode = ({ mode }: { mode: number }) => {
     profileStore.updateState({
@@ -11,6 +19,9 @@ const onSelectQuizMode = ({ mode }: { mode: number }) => {
     });
     router.push({
         name: "quizHome",
+        params: {
+            lang: computedLanguageMapping.value[mode],
+        },
     });
 };
 </script>
@@ -19,12 +30,12 @@ const onSelectQuizMode = ({ mode }: { mode: number }) => {
         <div class="section-title">字卡 App</div>
         <div class="section-hint mt-4">請選擇要練習的語言</div>
         <div class="section-language mt-10">
-            <Button @click="onSelectQuizMode({ mode: QUIZ_MODE.ENGLISH })"
+            <Button @click="() => onSelectQuizMode({ mode: QUIZ_MODE.ENGLISH })"
                 >英文</Button
             >
             <Button
                 class="mt-8"
-                @click="onSelectQuizMode({ mode: QUIZ_MODE.JAPANESE })"
+                @click="() => onSelectQuizMode({ mode: QUIZ_MODE.JAPANESE })"
                 >日文</Button
             >
         </div>

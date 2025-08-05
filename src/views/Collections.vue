@@ -1,0 +1,1 @@
+<template>Card list</template>
