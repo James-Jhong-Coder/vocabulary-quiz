@@ -7,6 +7,7 @@
 </template>
 
 <style scoped>
+@reference "@/assets/style/global.css";
 .section {
     @apply w-full h-full;
     @apply sm:w-[40rem] md:w-[48rem] mx-auto;
