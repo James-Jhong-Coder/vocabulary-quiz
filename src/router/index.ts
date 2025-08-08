@@ -9,9 +9,13 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         path: "/quiz/:lang",
-        name: "quizHome",
-        component: () => import("@/views/QuizHome.vue"),
+        component: () => import("@/views/QuizLayout.vue"),
         children: [
+            {
+                path: "",
+                name: "quizHome",
+                component: () => import("@/views/QuizHome.vue"),
+            },
             {
                 path: "collection",
                 name: "collections",
